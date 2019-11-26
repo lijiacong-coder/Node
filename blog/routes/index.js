@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/reg',User.reg);
+router.post("/reg",User.do_reg);
 
 module.exports = router;
