@@ -1,25 +1,9 @@
-var mysql = require('mysql');
-var pool  = mysql.createPool({
-  connectionLimit : 10,
-  host            : 'localhost',
-  user            : 'root',
-  password        : '',
-  database        : 'blog'
-});
+var db = require("./db.js");
 
-exports.insert_name_by_pass = function(uname,pass,callback){
-
-    pool.getConnection(function(err, connection) {
-        if (err) throw err; 
-
-        var sql = "select * from t_users where ACCOUNT='"+uname+"' and "+"PASSWORD='"+pass+"'";
-        connection.query(sql, function (error, results, fields) {
-        connection.release();
-        if (error) throw error;
-        callback(err,results);
-
-        });
-      });
+exports.insert_name_by_pass = function(uname,pass,nickname,callback){
+  //var sql = "select * from t_users where ACCOUNT=? and PASSWORD=?";
+  var sql = "insert into t_users (ACCOUNT,PASSWORD,NAME) values(?,?,?)";
+  db.query(sql,[uname,pass,nickname],callback);
 
     /*
     connection.connect();
