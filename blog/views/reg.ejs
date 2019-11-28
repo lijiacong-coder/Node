@@ -155,15 +155,19 @@
 
 <script>
 	$("#f_email").blur(function(){
-		var name=$(this).val();
-		//console.log(name);
+		var name = $(this).val();
 		$.post("/check",{"account":name},function(data){
-			//console.log(data);
-			
-			if(data=='success'){
-				$('#f_email').after("<span id='s1'>用户名重名</span>");
+			if(data == 'success'){
+				if($('#s1').length>0){
+					$('#s1').remove();
+				}
+				$('#f_email').after("<span id='s1'>用户名重名<span>");
+			}else{
+				if($('#s1').length>0){
+					$('#s1').remove();
+				}
 			}
-		},'text');
+		},"text");
 	})
 </script>
 
