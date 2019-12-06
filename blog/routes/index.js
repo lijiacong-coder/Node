@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../controllers/user.js');
+var Blog = require("../controllers/blog.js");
+
 
 function checklogin(req,res,next){
   if(req.session.id){
@@ -25,6 +27,8 @@ router.get("/unlogin",User.unlogin);
 router.post("/check",User.checkname);
 
 router.get("/index",checklogin);
-router.get("/index",User.index);
+router.get("/index",Blog.index);
+
+router.get("/newBlog",Blog.add);
 
 module.exports = router;
