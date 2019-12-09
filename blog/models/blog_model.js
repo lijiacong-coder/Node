@@ -4,3 +4,24 @@ exports.show_articles_by_name = function(uid,callback){
     var sql = "select * from t_users,t_blogs where t_users.USER_ID=t_blogs.WRITER and t_blogs.WRITER=?";
     db.query(sql,[uid],callback);
 }
+
+exports.sel_cata_by_uid = function(uid,callback){
+    var sql = "select * from t_blog_catalogs where t_blog_catalogs.USER_ID=?";
+    db.query(sql,[uid],callback);
+}
+
+exports.insert_catalog = function(cataname,uid,callback){
+
+    var sql = "insert into t_blog_catalogs(NAME,USER_ID) values(?,?)";
+    db.query(sql,[cataname,uid],callback);
+}
+
+exports.sel_catadata=function(cid,callback){
+    var sql="select * from t_blog_catalogs where t_blog_catalogs.CATALOG_ID=?";
+    db.query(sql,[cid],callback);
+}
+
+exports.update_cataname = function(cid,cname,callback){
+    var sql = "update t_blog_catalogs set NAME=? where CATALOG_ID=?";
+    db.query(sql,[cname,cid],callback);
+}

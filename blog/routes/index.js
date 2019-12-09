@@ -29,6 +29,15 @@ router.post("/check",User.checkname);
 router.get("/index",checklogin);
 router.get("/index",Blog.index);
 
+// 文章相关
 router.get("/newBlog",Blog.add);
+
+
+//文章分类相关
+router.get("/blogCatalogs",Blog.add_catalog);
+router.post("/addBlogCatalog",Blog.addBlogCatalog);
+router.get("/editCatalog",Blog.editCatalog);
+router.post("/updateCatalog",Blog.updateCatalog);
+
 
 module.exports = router;
