@@ -1,7 +1,7 @@
 var db = require("./db.js");
 
 exports.show_articles_by_name = function(uid,callback){
-    var sql = "select * from t_users,t_blogs where t_users.USER_ID=t_blogs.WRITER and t_blogs.WRITER=?";
+    var sql = "select t_blogs.TITLE,t_blogs.ADD_TIME,t_blog_catalogs.NAME as CNAME,t_blogs.CLICK_RATE,t_blogs.CONTENT,t_blogs.BLOG_ID from t_users,t_blogs,t_blog_catalogs where t_users.USER_ID=t_blogs.WRITER and t_blog_catalogs.CATALOG_ID=t_blogs.CATALOG_ID and t_blogs.WRITER=?";
     db.query(sql,[uid],callback);
 }
 
